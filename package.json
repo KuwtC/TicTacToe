@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "watch": "jest --watch",
-    "start": "node app.js"
+    "start": "node app.js",
+    "herokupostbuild": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "express": "^4.16.4"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   }
 }
