@@ -53,6 +53,11 @@ module.exports = class TicTacToe {
 
     // Check if we have a victory condition
     for (let i = 0; i < 3; i++) {
+      // Check horizontal rows
+      if (gameState.grid[i][0] === gameState.grid[i][1] && gameState.grid[i][1] === gameState.grid[i][2]) {
+        return gameState.grid[i][0]
+      }
+
       // Check vertical rows
       if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i]) {
         return gameState.grid[0][i]
