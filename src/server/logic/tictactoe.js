@@ -25,4 +25,18 @@ module.exports = class TicTacToe {
   getGameState () {
     return this.gameState
   }
+
+  makeMove (cell) {
+    let gameState = this.gameState // This works because Objects are passed by reference and not by value
+
+    // Update the gameState with the player token
+    gameState.grid[cell[0]][cell[1]] = gameState.currentPlayer
+    // Switch token to other player
+    gameState.currentPlayer = gameState.currentPlayer === this.playerOne ? this.playerTwo : this.playerOne
+    // Increment the move counter, used to check for ties
+    gameState.moves++
+
+    // Returns true if the move was valid
+    return true
+  }
 }
