@@ -8,12 +8,11 @@ router.get('/', (req, res) => {
 router.get('/update/:cell', (req, res) => {
   res.send(JSON.stringify({
     currentPlayer: 'X',
-    grid: [ ['X', '-', '-'], ['-', '-', '-'], ['-', '-', '-'] ],
+    grid: [ ['X', null, null], [null, null, null], [null, null, null] ],
     moves: 7,
     maxMoves: 9,
     winner: 'O',
     validMove: false
-
   }))
 })
 
