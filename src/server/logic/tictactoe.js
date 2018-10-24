@@ -31,7 +31,7 @@ module.exports = class TicTacToe {
 
     // Check if the move was valid or if the game has ended
     if (gameState.grid[cell[0]][cell[1]] !== this.emptyToken ||
-        this.checkWin() === false) {
+        this.winner === this.emptyToken) {
       return false
     }
 
@@ -41,12 +41,24 @@ module.exports = class TicTacToe {
     gameState.currentPlayer = gameState.currentPlayer === this.playerOne ? this.playerTwo : this.playerOne
     // Increment the move counter, used to check for ties
     gameState.moves++
+    // Check if we have a winner
+    gameState.winner = this.checkWin()
 
     // Returns true if the move was valid
     return true
   }
 
   checkWin () {
+    const gameState = this.gameState
+
+    // Check if we have a victory condition
+    for (let i = 0; i < 3; i++) {
+      // Check vertical rows
+      if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i]) {
+        return gameState.grid[0][i]
+      }
+    }
+
     return this.emptyToken
   }
 }
