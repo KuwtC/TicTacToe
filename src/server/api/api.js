@@ -16,4 +16,15 @@ router.get('/update/:cell', (req, res) => {
   }))
 })
 
+router.get('/reset/', (req, res) => {
+  res.send(JSON.stringify({
+    currentPlayer: 'X',
+    grid: [ ['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-'] ],
+    moves: 0,
+    maxMoves: 9,
+    winner: '-',
+    validMove: false
+  }))
+})
+
 module.exports = router
