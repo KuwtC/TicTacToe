@@ -1,5 +1,7 @@
 const request = require('supertest')
 const app = require('../../../app')
+const TicTacToe = require('../logic/tictactoe')
+const game = new TicTacToe()
 
 describe('GET /api/update/:cell', () => {
   it('should return an object with a updated game (new move has been made)', async () => {
@@ -28,21 +30,13 @@ describe('GET /api/update/:cell', () => {
 describe('GET /api/reset/', () => {
   it('should return an object with a new game (board has been reset)', async () => {
     const res = await request(app).get('/api/reset/')
-    // Create two dimensional array to hold our empty game board
-    const column = expect.stringMatching('-')
-    const row = [column, column, column]
-    const expectedGrid = [row, row, row]
-    const game = JSON.parse(res.text)
-    // Mimic a newly created board
+    var gameState = game.getGameState()
     expect(res.status).toBe(200)
-    expect(game.maxMoves).toBe(9)
-    expect(game.moves).toBe(0);
-    expect(game.moves).toBeLessThanOrEqual(9)
-    expect([true, false].includes(game.validMove)).toBe(true)
-    // Expect that no moves have been made
-    expect(['-'].includes(game.winner)).toBe(true)
-    expect.arrayContaining(expectedGrid)
-    // Expect X as current player since X always starts
-    expect(['X'].includes(game.currentPlayer)).toBe(true)
+    expect(gameState.currentPlayer).toBe('X')
+    expect.arrayContaining(gameState.grid)
+    expect(gameState.moves).toBe(0)
+    expect(gameState.maxMoves).toBe(9)
+    expect(gameState.winner).toBeNull()
+    expect([true, false].includes(gameState.validMove)).toBe(true)
   })
 })

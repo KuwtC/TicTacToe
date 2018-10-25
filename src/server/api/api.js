@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const TicTacToe = require('../logic/tictactoe')
+const game = new TicTacToe()
 
 router.get('/', (req, res) => {
   res.status(405).send({ error: 'GET method not allowed, try OPTIONS.' })
@@ -17,14 +19,12 @@ router.get('/update/:cell', (req, res) => {
 })
 
 router.get('/reset/', (req, res) => {
+  game.newGame()
+  var gameState = game.getGameState()
   res.send(JSON.stringify({
-    currentPlayer: 'X',
-    grid: [ ['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-'] ],
-    moves: 0,
-    maxMoves: 9,
-    winner: '-',
-    validMove: false
+    gameState
   }))
+
 })
 
 module.exports = router
