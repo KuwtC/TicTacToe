@@ -13,7 +13,17 @@ router.get('/update/:cell', (req, res) => {
     maxMoves: 9,
     winner: 'O',
     validMove: false
+  }))
+})
 
+router.get('/reset/', (req, res) => {
+  res.send(JSON.stringify({
+    currentPlayer: 'X',
+    grid: [ ['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-'] ],
+    moves: 0,
+    maxMoves: 9,
+    winner: '-',
+    validMove: false
   }))
 })
 
