@@ -1,9 +1,10 @@
 const TicTacToe = require('./tictactoe')
 
 const game = new TicTacToe()
-let gameState = game.getGameState()
 
 describe('Verify initial gameState', () => {
+  let gameState = game.getGameState()
+
   it('should return an object with an the initial game state', async () => {
     expect(gameState.currentPlayer).toBe('X')
     expect(gameState.moves).toBe(0)
@@ -15,7 +16,7 @@ describe('Verify initial gameState', () => {
 })
 
 describe('TicTacToe logic test with vertical victories', () => {
-  gameState = game.getGameState()
+  let gameState = game.getGameState()
 
   it('should return the board after one move, player X to [2, 1]', () => {
     expect(game.makeMove([2, 1])).toBe(true)
@@ -35,7 +36,7 @@ describe('TicTacToe logic test with vertical victories', () => {
     expect(gameState.winner).toBe(null)
   })
 
-  it('should return the board after two moves, player O to [0, 0]', () => {
+  it('should return the board after game has ended with X being the winner', () => {
     expect(game.makeMove([0, 0])).toBe(true)
     gameState = game.getGameState()
 
@@ -56,7 +57,9 @@ describe('TicTacToe logic test with vertical victories', () => {
 })
 
 describe('TicTacToe logic test with horizontal victories', () => {
-  it('should return the board after one move, player X to [2, 1]', () => {
+  let gameState = game.getGameState()
+
+  it('should return the board after game has ended with X being the winner', () => {
     game.newGame()
     gameState = game.getGameState()
 
@@ -73,7 +76,9 @@ describe('TicTacToe logic test with horizontal victories', () => {
 })
 
 describe('TicTacToe logic test with diagonal victories', () => {
-  it('should return the board after one move, player X to [2, 1]', () => {
+  let gameState = game.getGameState()
+
+  it('should return the board after game has ended with O being the winner', () => {
     game.newGame()
     gameState = game.getGameState()
 
@@ -91,7 +96,9 @@ describe('TicTacToe logic test with diagonal victories', () => {
 })
 
 describe('TicTacToe logic test ends in a tie', () => {
-  it('should return the board after one move, player X to [2, 1]', () => {
+  let gameState = game.getGameState()
+
+  it('should return the board after game has ended in a tie with no winner', () => {
     game.newGame()
     gameState = game.getGameState()
 
