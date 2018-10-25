@@ -5,7 +5,6 @@ let gameState = game.getGameState()
 
 describe('Verify initial gameState', () => {
   it('should return an object with an the initial game state', async () => {
-
     expect(gameState.currentPlayer).toBe('X')
     expect(gameState.moves).toBe(0)
     expect(gameState.maxMoves).toBe(9)
@@ -91,3 +90,23 @@ describe('TicTacToe logic test with diagonal victories', () => {
   })
 })
 
+describe('TicTacToe logic test ends in a tie', () => {
+  it('should return the board after one move, player X to [2, 1]', () => {
+    game.newGame()
+    gameState = game.getGameState()
+
+    expect(game.makeMove([0, 1])).toBe(true)
+    expect(game.makeMove([1, 1])).toBe(true)
+    expect(game.makeMove([1, 0])).toBe(true)
+    expect(game.makeMove([0, 0])).toBe(true)
+    expect(game.makeMove([2, 2])).toBe(true)
+    expect(game.makeMove([2, 0])).toBe(true)
+    expect(game.makeMove([0, 2])).toBe(true)
+    expect(game.makeMove([1, 2])).toBe(true)
+    expect(game.makeMove([2, 1])).toBe(true)
+
+    expect(gameState.grid).toMatchObject([ ['O', 'X', 'X'], ['X', 'O', 'O'], ['O', 'X', 'X'] ])
+    expect(gameState.currentPlayer).toBe('O')
+    expect(gameState.winner).toBe('T')
+  })
+})

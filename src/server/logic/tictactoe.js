@@ -63,13 +63,18 @@ module.exports = class TicTacToe {
         return gameState.grid[0][i]
       }
     }
-    
+
     // Check diagonal
     if ((gameState.grid[0][0] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][2]) ||
       (gameState.grid[0][2] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][0])) {
       return gameState.grid[1][1]
     }
 
+    // Check for ties
+    if (gameState.moves === gameState.maxMoves) {
+      return this.tieToken
+    }
+    
     // Return a default value if no victory condition was met
     return this.emptyToken
   }
