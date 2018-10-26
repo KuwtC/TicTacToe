@@ -7,10 +7,12 @@ describe('GET /api/update/:cell', () => {
   it('should return an object with a updated game (new move has been made)', async () => {
     const cell = '0,0'
     const res = await request(app).get(`/api/update/${cell}`)
-    expect(res.status).toBe(200)
 
-    const gameState = JSON.parse(res.text)
-    // Mimic a gameState in session
+    expect(res.status).toBe(200)
+    // Make a move with cell and get updated gamestate
+    game.makeMove(cell)
+    var gameState = game.getGameState()
+
     expect(['X', 'O'].includes(gameState.currentPlayer)).toBe(true)
     expect(gameState.moves).toBeGreaterThanOrEqual(0)
     expect(gameState.moves).toBeLessThanOrEqual(9)
@@ -30,8 +32,12 @@ describe('GET /api/update/:cell', () => {
 describe('GET /api/reset/', () => {
   it('should return an object with a new game (board has been reset)', async () => {
     const res = await request(app).get('/api/reset/')
-    var gameState = game.getGameState()
+
     expect(res.status).toBe(200)
+    // Initialize a new game and get updated gamestate
+    game.newGame()
+    var gameState = game.getGameState()
+
     expect(gameState.currentPlayer).toBe('X')
     expect.arrayContaining(gameState.grid)
     expect(gameState.moves).toBe(0)
