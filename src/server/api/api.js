@@ -8,13 +8,10 @@ router.get('/', (req, res) => {
 })
 
 router.get('/update/:cell', (req, res) => {
+  game.makeMove(req.params.cell.split(','))
+  var gameState = game.gameState
   res.send(JSON.stringify({
-    currentPlayer: 'X',
-    grid: [ ['X', null, null], [null, null, null], [null, null, null] ],
-    moves: 7,
-    maxMoves: 9,
-    winner: 'O',
-    validMove: false
+    gameState
   }))
 })
 
