@@ -46,3 +46,26 @@ describe('GET /api/reset/', () => {
     expect([true, false].includes(gameState.validMove)).toBe(true)
   })
 })
+
+describe('GET /api/state/', () => {
+  it('should return an object with the current gamestate', async () => {
+    const res = await request(app).get('/api/state/')
+    var gameState = game.getGameState()
+
+    expect(res.status).toBe(200)
+    
+    expect(['X', 'O'].includes(gameState.currentPlayer)).toBe(true)
+    expect(gameState.moves).toBeGreaterThanOrEqual(0)
+    expect(gameState.moves).toBeLessThanOrEqual(9)
+    expect(gameState.maxMoves).toBe(9)
+    expect([true, false].includes(gameState.validMove)).toBe(true)
+    expect(['X', 'O', 'T', null].includes(gameState.winner)).toBe(true)
+
+    // Iterate through the grid and check each cell
+    gameState.grid.map((row) => {
+      row.map((cell) => {
+        expect([null, 'X', 'O']).toContain(cell)
+      })
+    })
+  })
+})
