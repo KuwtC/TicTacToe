@@ -117,3 +117,41 @@ describe('TicTacToe logic test ends in a tie', () => {
     expect(gameState.winner).toBe('T')
   })
 })
+
+describe('TicTacToe logic test edge case with null vertical line', () => {
+  let gameState = game.getGameState()
+
+  it('should return the board after game has ended with X being the winner', () => {
+    game.newGame()
+    gameState = game.getGameState()
+
+    expect(game.makeMove([0, 0])).toBe(true)
+    expect(game.makeMove([0, 1])).toBe(true)
+    expect(game.makeMove([1, 0])).toBe(true)
+    expect(game.makeMove([1, 1])).toBe(true)
+    expect(game.makeMove([2, 0])).toBe(true)
+
+    expect(gameState.grid).toMatchObject([ ['X', 'O', null], ['X', 'O', null], ['X', null, null] ])
+    expect(gameState.currentPlayer).toBe('O')
+    expect(gameState.winner).toBe('X')
+  })
+})
+
+describe('TicTacToe logic test edge case with null horizontal line', () => {
+  let gameState = game.getGameState()
+
+  it('should return the board after game has ended with X being the winner', () => {
+    game.newGame()
+    gameState = game.getGameState()
+
+    expect(game.makeMove([0, 0])).toBe(true)
+    expect(game.makeMove([1, 0])).toBe(true)
+    expect(game.makeMove([0, 1])).toBe(true)
+    expect(game.makeMove([1, 1])).toBe(true)
+    expect(game.makeMove([0, 2])).toBe(true)
+
+    expect(gameState.grid).toMatchObject([ ['X', 'X', 'X'], ['O', 'O', null], [null, null, null] ])
+    expect(gameState.currentPlayer).toBe('O')
+    expect(gameState.winner).toBe('X')
+  })
+})
