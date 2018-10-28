@@ -14,7 +14,10 @@
   function getState (gameState) {
     let winner = document.getElementById('game-messages')
     let playerOneScore = document.getElementById('player-one-score')
-    let PlayerTwoScore = document.getElementById('player-two-score')
+    let playerTwoScore = document.getElementById('player-two-score')
+
+    playerOneScore.innerText = gameState.playerOneScore
+    playerTwoScore.innerText = gameState.playerTwoScore
 
     switch(gameState.winner) {
       case 'X':
