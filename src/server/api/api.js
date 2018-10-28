@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.status(405).send({ error: 'GET method not allowed, try OPTIONS.' })
 })
 
-//make a move
+// Make a move
 router.get('/update/:cell', (req, res) => {
   game.makeMove(req.params.cell.split(','))
   var gameState = game.gameState
@@ -16,7 +16,7 @@ router.get('/update/:cell', (req, res) => {
   }))
 })
 
-//reset game(get new game)
+// Reset game (get new game)
 router.get('/reset/', (req, res) => {
   game.newGame()
   var gameState = game.getGameState()
@@ -25,7 +25,7 @@ router.get('/reset/', (req, res) => {
   }))
 })
 
-//get gamestate  
+// Get gamestate
 router.get('/state/', (req, res) => {
   let gameState = game.getGameState()
   res.send(JSON.stringify({

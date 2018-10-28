@@ -44,6 +44,25 @@ h1 {
     box-sizing: border-box;
 }
 
+#grid > li.X {
+    font-size: 40px;
+    color: #ed4e6e
+}
+
+#grid > li.O {
+    font-size: 40px;
+    color: #485b6e;
+}
+
 #grid > li:hover {
     background: #F34A4A;
+}
+
+#whos-turn > span,
+#whos-turn.X span.X,
+#whos-turn.O span.O,
+#grid > li:active {
+    width: 200px;
+    height: 200px;
+    border: 0;
 }

@@ -12,18 +12,62 @@
             <h1>Tic Tac Toe</h1>
             <ul id="grid">
                 <!-- row 1 -->
-                <li position="0,0"></li>
-                <li position="0,1"></li>
-                <li position="0,2"></li>
+                <li data-pos="0,0"></li>
+                <li data-pos="0,1"></li>
+                <li data-pos="0,2"></li>
                 <!-- row 2 -->
-                <li position="1,0"></li>
-                <li position="1,1"></li>
-                <li position="1,2"></li>
+                <li data-pos="1,0"></li>
+                <li data-pos="1,1"></li>
+                <li data-pos="1,2"></li>
                 <!-- row 3-->
-                <li position="2,0"></li>
-                <li position="2,1"></li>
-                <li position="2,2"></li>
+                <li data-pos="2,0"></li>
+                <li data-pos="2,1"></li>
+                <li data-pos="2,2"></li>
             </ul>
         </div>
+        <script>
+            (function () {
+                function update (cell) {
+                console.log(cell)
+                fetch(`http://localhost:3000/api/update/${cell}`)
+                    .then((res) => {
+                        return res.json()
+                    })
+                    .then((gs) => {
+                        getState(gs.gameState)
+                    })
+                }
+
+                function getState (gameState) {
+                console.log(gameState)
+                let playerOneScore = document.getElementById('player-one-score')
+                let PlayerTwoScore = document.getElementById('player-two-score')
+                console.log(playerOneScore)
+
+                let curPlayer = document.getElementById('whos-turn')
+
+                let grid = gameState.grid
+                grid.forEach((row, y) => {
+                    row.forEach((cell, x) => {
+                    document.querySelectorAll(`[data-pos="${y},${x}"]`)[0].innerText = cell
+                    })
+                })
+                }
+
+                let cells = document.querySelectorAll('li')
+                cells.forEach(cell => {
+                let pos = cell.dataset.pos
+                console.log(pos)
+                cell.addEventListener('click', (e) => { update(e.target.dataset.pos) })
+                })
+                fetch('http://localhost:3000/api/state')
+                .then((res) => {
+                    return res.json()
+                })
+                .then((gs) => {
+                    getState(gs.gameState)
+                })
+            }());
+        </script>
     </body>
 </html>
