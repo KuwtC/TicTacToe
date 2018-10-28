@@ -6,8 +6,6 @@ module.exports = class TicTacToe {
     this.playerOne = 'X'
     this.playerTwo = 'O'
     this.maxMoves = 9
-    this.playerOneWins = 0
-    this.playerTwoWins = 0
 
     // Start with a clean board
     this.newGame()
@@ -25,10 +23,6 @@ module.exports = class TicTacToe {
   }
 
   getGameState () {
-    // Keep track of the number of victories
-    this.gameState.playerOneWins = this.playerOneWins
-    this.gameState.playerTwoWins = this.playerTwoWins
-
     return this.gameState
   }
 
@@ -38,8 +32,6 @@ module.exports = class TicTacToe {
     // Check if the move was valid or if the game has ended
     if (gameState.grid[cell[0]][cell[1]] !== this.emptyToken ||
         this.winner === this.emptyToken) {
-      gameState.validMove = false
-
       return false
     }
 
@@ -53,44 +45,21 @@ module.exports = class TicTacToe {
     gameState.winner = this.checkWin()
 
     // Returns true if the move was valid
-    gameState.validMove = true
-
-    // Update the number of victories
-    this.gameState.playerOneWins = this.playerOneWins
-    this.gameState.playerTwoWins = this.playerTwoWins
-
     return true
   }
 
   checkWin () {
     const gameState = this.gameState
-    if (gameState.winner !== null) {
-      return gameState.winner
-    }
 
     // Check if we have a victory condition
     for (let i = 0; i < 3; i++) {
       // Check horizontal rows
       if (gameState.grid[i][0] === gameState.grid[i][1] && gameState.grid[i][1] === gameState.grid[i][2]) {
-        // Check for null cells to prevent game from going on when one horizontal row is null
-        if (gameState.grid[i][0] !== null && gameState.grid[i][0] === this.playerOne) {
-          this.playerOneWins++
-        } else if (gameState.grid[i][0] !== null && gameState.grid[0][i] === this.playerTwo) {
-          this.playerTwoWins++
-        }
-
         return gameState.grid[i][0]
       }
 
       // Check vertical rows
       if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i]) {
-        // Check for null cells to prevent game from going on when one vertical row is null
-        if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerOne) {
-          this.playerOneWins++
-        } else if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerTwo) {
-          this.playerTwoWins++
-        }
-
         return gameState.grid[0][i]
       }
     }
@@ -98,13 +67,6 @@ module.exports = class TicTacToe {
     // Check diagonal
     if ((gameState.grid[0][0] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][2]) ||
       (gameState.grid[0][2] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][0])) {
-      // Check if center square is null to prevent game from going on after victory
-      if (gameState.grid[1][1] !== null && gameState.grid[1][1] === this.playerOne) {
-        this.playerOneWins++
-      } else if (gameState.grid[1][1] !== null && gameState.grid[1][1] === this.playerTwo) {
-        this.playerTwoWins++
-      }
-
       return gameState.grid[1][1]
     }
 
@@ -112,7 +74,7 @@ module.exports = class TicTacToe {
     if (gameState.moves === gameState.maxMoves) {
       return this.tieToken
     }
-
+    
     // Return a default value if no victory condition was met
     return this.emptyToken
   }
