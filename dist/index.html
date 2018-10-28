@@ -1,3 +1,6 @@
+<!-- The following code is based upon the code from the website codepen.io
+    (https://codepen.io/ArmandoAmador/pen/fgrmy) from the user Armando Amador
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
     <body>
         <div class="container">
             <h1>Tic Tac Toe</h1>
-            <ul id="grid">
+            <ul id="game">
                 <!-- row 1 -->
                 <li data-pos="0,0"></li>
                 <li data-pos="0,1"></li>
@@ -24,50 +27,30 @@
                 <li data-pos="2,1"></li>
                 <li data-pos="2,2"></li>
             </ul>
+
+            <button id="reset-game">Reset Game</button>
+            
+            <!-- Game Messages -->
+            <div id="game-messages">
+                <span class="player-X-win">Player One Wins</span>
+                <span class="player-O-win">Player Two Wins</span>
+                <span class="draw">Draw Game</span>
+            </div>
+            
+            <aside id="nfo">
+                <h2>Who's Turn</h2>
+                <div id="whos-turn" class="X">
+                    <span class="X">Player 1</span>
+                    <span class="O">Player 2</span>
+                </div>
+                
+                <h2>Score Card</h2>
+                <div id="score">
+                    Player 1: <span id="player-one-score">0</span> <br />
+                    Player 2: <span id="player-two-score">0</span> <br />
+                </div>
+            </aside>
         </div>
-        <script>
-            (function () {
-                function update (cell) {
-                console.log(cell)
-                fetch(`http://localhost:3000/api/update/${cell}`)
-                    .then((res) => {
-                        return res.json()
-                    })
-                    .then((gs) => {
-                        getState(gs.gameState)
-                    })
-                }
-
-                function getState (gameState) {
-                console.log(gameState)
-                let playerOneScore = document.getElementById('player-one-score')
-                let PlayerTwoScore = document.getElementById('player-two-score')
-                console.log(playerOneScore)
-
-                let curPlayer = document.getElementById('whos-turn')
-
-                let grid = gameState.grid
-                grid.forEach((row, y) => {
-                    row.forEach((cell, x) => {
-                    document.querySelectorAll(`[data-pos="${y},${x}"]`)[0].innerText = cell
-                    })
-                })
-                }
-
-                let cells = document.querySelectorAll('li')
-                cells.forEach(cell => {
-                let pos = cell.dataset.pos
-                console.log(pos)
-                cell.addEventListener('click', (e) => { update(e.target.dataset.pos) })
-                })
-                fetch('http://localhost:3000/api/state')
-                .then((res) => {
-                    return res.json()
-                })
-                .then((gs) => {
-                    getState(gs.gameState)
-                })
-            }());
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
