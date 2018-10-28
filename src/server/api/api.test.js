@@ -13,11 +13,31 @@ describe('GET /api/update/:cell', () => {
     game.makeMove(cell)
     var gameState = game.getGameState()
 
+    // Game state should return true on validMove
     expect(['X', 'O'].includes(gameState.currentPlayer)).toBe(true)
     expect(gameState.moves).toBeGreaterThanOrEqual(0)
     expect(gameState.moves).toBeLessThanOrEqual(9)
     expect(gameState.maxMoves).toBe(9)
     expect([true, false].includes(gameState.validMove)).toBe(true)
+    expect(['X', 'O', 'T', null].includes(gameState.winner)).toBe(true)
+
+    // Iterate through the grid and check each cell
+    gameState.grid.map((row) => {
+      row.map((cell) => {
+        expect([null, 'X', 'O']).toContain(cell)
+      })
+    })
+
+    let currPlayer = gameState.currentPlayer
+    let currMoves = gameState.moves
+
+    // Make another move with cell and get updated gamestate validMove
+    gameState.validMove = game.makeMove(cell).validMove
+
+    // Game state should return false on validMove
+    expect(gameState.currentPlayer).toBe(currPlayer)
+    expect(gameState.moves).toBe(currMoves)
+    expect([true, false].includes(gameState.validMove)).toBe(false)
     expect(['X', 'O', 'T', null].includes(gameState.winner)).toBe(true)
 
     // Iterate through the grid and check each cell
@@ -53,7 +73,7 @@ describe('GET /api/state/', () => {
     var gameState = game.getGameState()
 
     expect(res.status).toBe(200)
-    
+
     expect(['X', 'O'].includes(gameState.currentPlayer)).toBe(true)
     expect(gameState.moves).toBeGreaterThanOrEqual(0)
     expect(gameState.moves).toBeLessThanOrEqual(9)

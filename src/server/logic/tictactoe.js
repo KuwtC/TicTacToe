@@ -32,6 +32,7 @@ module.exports = class TicTacToe {
     // Check if the move was valid or if the game has ended
     if (gameState.grid[cell[0]][cell[1]] !== this.emptyToken ||
         this.winner === this.emptyToken) {
+      gameState.validMove = false
       return false
     }
 
@@ -45,6 +46,8 @@ module.exports = class TicTacToe {
     gameState.winner = this.checkWin()
 
     // Returns true if the move was valid
+    gameState.validMove = true
+
     return true
   }
 
@@ -74,7 +77,7 @@ module.exports = class TicTacToe {
     if (gameState.moves === gameState.maxMoves) {
       return this.tieToken
     }
-    
+
     // Return a default value if no victory condition was met
     return this.emptyToken
   }
