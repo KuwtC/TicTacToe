@@ -64,9 +64,9 @@ module.exports = class TicTacToe {
     for (let i = 0; i < 3; i++) {
       // Check horizontal rows
       if (gameState.grid[i][0] === gameState.grid[i][1] && gameState.grid[i][1] === gameState.grid[i][2]) {
-        if (gameState.grid[i][0] === this.playerOne) {
+        if (gameState.grid[i][0] !== null && gameState.grid[i][0] === this.playerOne) {
           this.playerOneScore++
-        } else if (gameState.grid[i][0] === this.playerTwo) {
+        } else if (gameState.grid[i][0] !== null && gameState.grid[i][0] === this.playerTwo) {
           this.playerTwoScore++
         }
 
@@ -75,9 +75,9 @@ module.exports = class TicTacToe {
 
       // Check vertical rows
       if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i]) {
-        if (gameState.grid[0][i] === this.playerOne) {
+        if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerOne) {
           this.playerOneScore++
-        } else if (gameState.grid[0][i] === this.playerTwo) {
+        } else if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerTwo) {
           this.playerTwoScore++
         }
 
@@ -88,9 +88,9 @@ module.exports = class TicTacToe {
     // Check diagonal
     if ((gameState.grid[0][0] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][2]) ||
       (gameState.grid[0][2] === gameState.grid[1][1] && gameState.grid[1][1] === gameState.grid[2][0])) {
-      if (gameState.grid[1][1] === this.playerOne) {
+      if (gameState.grid[1][1] !== null && gameState.grid[1][1] === this.playerOne) {
         this.playerOneScore++
-      } else if (gameState.grid[1][1] === this.playerTwo) {
+      } else if (gameState.grid[1][1] !== null && gameState.grid[1][1] === this.playerTwo) {
         this.playerTwoScore++
       }
 
