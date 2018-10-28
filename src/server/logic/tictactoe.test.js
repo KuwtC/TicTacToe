@@ -53,6 +53,7 @@ describe('TicTacToe logic test with vertical victories', () => {
     expect(gameState.grid).toMatchObject([ ['O', null, 'X'], [null, 'O', 'X'], ['O', 'X', 'X'] ])
     expect(gameState.currentPlayer).toBe('O')
     expect(gameState.winner).toBe('X')
+    expect(gameState.playerOneScore).toBe(1)
   })
 })
 
@@ -72,6 +73,7 @@ describe('TicTacToe logic test with horizontal victories', () => {
     expect(gameState.grid).toMatchObject([ ['O', null, null], [null, 'O', null], ['X', 'X', 'X'] ])
     expect(gameState.currentPlayer).toBe('O')
     expect(gameState.winner).toBe('X')
+    expect(gameState.playerOneScore).toBe(2)
   })
 })
 
@@ -92,6 +94,7 @@ describe('TicTacToe logic test with diagonal victories', () => {
     expect(gameState.grid).toMatchObject([ ['O', null, 'X'], [null, 'O', 'X'], [null, 'X', 'O'] ])
     expect(gameState.currentPlayer).toBe('X')
     expect(gameState.winner).toBe('O')
+    expect(gameState.playerTwoScore).toBe(1)
   })
 })
 
