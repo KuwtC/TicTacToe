@@ -3,7 +3,7 @@
   console.log('test')
   function update (cell) {
     console.log(cell)
-    fetch(`http://localhost:3000/api/update/${cell}`)
+    fetch(`./api/update/${cell}`)
       .then((res) => {
         return res.json()
       })
@@ -49,7 +49,7 @@
     console.log(pos)
     cell.addEventListener('click', (e) => { update(e.target.dataset.pos) })
   })
-  fetch('http://localhost:3000/api/state')
+  fetch('./api/state')
     .then((res) => {
       return res.json()
     })
@@ -59,7 +59,7 @@
 
   let resetButton = document.getElementById('reset-game')
   resetButton.addEventListener('click', (e) =>{
-    fetch('http://localhost:3000/api/reset')
+    fetch('./api/reset')
       .then((res) => {
         return res.json()
       })
