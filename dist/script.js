@@ -12,10 +12,23 @@
       })
   }
   function getState (gameState) {
-    console.log(gameState)
+    let winner = document.getElementById('game-messages')
     let playerOneScore = document.getElementById('player-one-score')
     let PlayerTwoScore = document.getElementById('player-two-score')
-    console.log(playerOneScore)
+    
+    switch(gameState.winner) {
+      case 'X':
+        winner.className = 'player-X-win'
+        break
+      case 'O':
+        winner.className = 'player-O-win'
+        break
+      case 'T':
+        winner.className = 'draw'
+        break
+      default:
+        winner.className = ''
+    }
     let curPlayer = document.getElementById('whos-turn')
     let grid = gameState.grid
     grid.forEach((row, y) => {
