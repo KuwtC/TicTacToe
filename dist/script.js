@@ -29,6 +29,7 @@
       default:
         winner.className = ''
     }
+
     let curPlayer = document.getElementById('whos-turn')
     curPlayer.className = gameState.currentPlayer
     let grid = gameState.grid
@@ -38,6 +39,7 @@
       })
     })
   }
+
   let cells = document.querySelectorAll('li')
   cells.forEach(cell => {
     let pos = cell.dataset.pos
@@ -51,4 +53,15 @@
     .then((gs) => {
       getState(gs.gameState)
     })
+
+  let resetButton = document.getElementById('reset-game')
+  resetButton.addEventListener('click', (e) =>{
+    fetch('http://localhost:3000/api/reset')
+      .then((res) => {
+        return res.json()
+      })
+      .then((gs) => {
+        getState(gs.gameState)
+      })
+  })
 })()
