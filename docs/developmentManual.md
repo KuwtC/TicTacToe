@@ -6,7 +6,7 @@ This project is written in [`node.js`](https://nodejs.org/en/) and as such requi
 
 ## Source control
 
-The project is stored on [**github**](https://github.com/KuwtC/TicTacToe/) under a ISC license. The root directory then needs to be initialized with npm: `npm init` , `npm install`.
+The project is stored on [**github**](https://github.com/KuwtC/TicTacToe/) under a ISC license. The root directory then needs to be initialized with npm: `npm install`.
 
 ## Dependencies
 
