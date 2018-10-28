@@ -7,7 +7,7 @@ The architecture is very simple, the game logic is accessed through an `express`
 
 ## Test driven design
 
-The project was developed with test driven development as a guiding principle. This means unit tests were written for any and all functions at the same time as the functions themselves.
+The project was developed with test driven development as a guiding principle. This means unit tests were written for any and all functions in the game logic at the same time as the functions themselves.
 
 ## Coding standard
 
