@@ -11,6 +11,7 @@ This is a simple, web based Tic Tac Toe game written in node.js. It serves prima
 The team consists of Böðvar, Davíð V, Diemut, Einar, Katrín and Styrmir. 
 
 ### Further info
+The HTML and CSS code is based upon the code from the website [codepen.io] (https://codepen.io/ArmandoAmador/pen/fgrmy) from the user Armando Amador.  
 [See the documentation](https://github.com/KuwtC/TicTacToe/tree/master/docs)
 
 [circle-badge]:https://circleci.com/gh/KuwtC/TicTacToe.svg?style=svg
