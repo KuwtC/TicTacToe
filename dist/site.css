@@ -1,3 +1,7 @@
+/* The following code is based upon the code from the website codepen.io
+    (https://codepen.io/ArmandoAmador/pen/fgrmy) from the user Armando Amador
+*/
+
 body {
     margin-top: 40px;
     background: #615049;
@@ -17,7 +21,7 @@ h1 {
     width: 700px;
 }
 
-#grid {
+#game {
     width: 600px;
     height: 600px;
     border: 2px solid #615049;
@@ -27,7 +31,7 @@ h1 {
     color: black;
 }
 
-#grid > li {
+#game > li {
     list-style: none;
     float: left;
     overflow: hidden;
@@ -44,25 +48,60 @@ h1 {
     box-sizing: border-box;
 }
 
-#grid > li.X {
+#game > li.X {
     font-size: 40px;
     color: #ed4e6e
 }
 
-#grid > li.O {
+#game > li.O {
     font-size: 40px;
     color: #485b6e;
 }
 
-#grid > li:hover {
+#game > li:hover {
     background: #F34A4A;
 }
 
+#nfo {
+    text-align:center;
+    margin-top: 10px;
+}
+
 #whos-turn > span,
+#game-messages > span {
+    display: none;
+}
+
 #whos-turn.X span.X,
 #whos-turn.O span.O,
-#grid > li:active {
+#game-messages.player-X-win > span.player-X-win, 
+#game-messages.player-O-win > span.player-O-win,
+#game-messages.draw > span.draw {
+    display: block;
+    margin-top: 10px;
+}
+
+#game > li:active {
     width: 200px;
     height: 200px;
     border: 0;
+}
+
+#reset-game {
+    text-align: center;
+        border: none;
+        padding: 0.6em 1.2em;
+        background: #ed4e6e;
+        color: #fff;
+        font-size: 1em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-block;
+        margin: 3px 2px;
+        border-radius: 2px;
+}
+
+#reset-game:hover {
+        background: #2c3e52;
 }
