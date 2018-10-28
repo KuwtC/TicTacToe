@@ -1,28 +1,21 @@
 # Development Manual
 
-## What to be done here:
+## Build enviroment
 
-1. What is needed and how to get the project to build on a fresh machine.
-2. Source control client and access to source control Build environment.
-3. Other necessary dependencies for development.
+This project is written in [`node.js`](https://nodejs.org/en/) and as such requires the node runtime enviroment on the developing machine. It also needs the node package manager [`npm`](https://www.npmjs.com/get-npm).
 
-## Helping tools
+## Source control
 
-I am **bold** text
+The project is stored on [**github**](https://github.com/KuwtC/TicTacToe/) under a ISC licence. The root directory then needs to be initialized with npm: `npm init` , `npm install`.
 
-I am  __underlined__ text
+## Dependencies
 
-I am inline `code`
+The project depends on the following node libraries which all need to be present for the project to build.
 
-### Syntax highlighting:
-``` js
-var foo = function (bar) {
-  return bar++;
-};
+The jest testing library `npm install jest --save-dev`
 
-console.log(foo(5));
-```
-### Links:
-[link](http://ru.is)
+The supertest testing library `npm install supertest --save-dev`
 
-[link with title](http://ru.is "RU")
+The express `npm install express --save`
+
+The javascript style standard `npm install standard --save-dev`
