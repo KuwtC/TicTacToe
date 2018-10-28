@@ -1,6 +1,6 @@
 (() => {
   'use strict'
-  console.log('test')   
+  console.log('test')
   function update (cell) {
     console.log(cell)
     fetch(`http://localhost:3000/api/update/${cell}`)
@@ -15,7 +15,7 @@
     let winner = document.getElementById('game-messages')
     let playerOneScore = document.getElementById('player-one-score')
     let PlayerTwoScore = document.getElementById('player-two-score')
-    
+
     switch(gameState.winner) {
       case 'X':
         winner.className = 'player-X-win'
@@ -30,6 +30,7 @@
         winner.className = ''
     }
     let curPlayer = document.getElementById('whos-turn')
+    curPlayer.className = gameState.currentPlayer
     let grid = gameState.grid
     grid.forEach((row, y) => {
       row.forEach((cell, x) => {
