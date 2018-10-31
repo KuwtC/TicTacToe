@@ -63,23 +63,15 @@ module.exports = class TicTacToe {
     // Check if we have a victory condition
     for (let i = 0; i < 3; i++) {
       // Check horizontal rows
-      if (gameState.grid[i][0] === gameState.grid[i][1] && gameState.grid[i][1] === gameState.grid[i][2]) {
-        if (gameState.grid[i][0] !== null && gameState.grid[i][0] === this.playerOne) {
-          this.playerOneScore++
-        } else if (gameState.grid[i][0] !== null && gameState.grid[i][0] === this.playerTwo) {
-          this.playerTwoScore++
-        }
+      if (gameState.grid[i][0] === gameState.grid[i][1] && gameState.grid[i][1] === gameState.grid[i][2] && gameState.grid[i][0] !== null) {
+        gameState.grid[i][0] === this.playerOne ? this.playerOneScore++ : this.playerTwoScore++
 
         return gameState.grid[i][0]
       }
 
       // Check vertical rows
-      if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i]) {
-        if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerOne) {
-          this.playerOneScore++
-        } else if (gameState.grid[0][i] !== null && gameState.grid[0][i] === this.playerTwo) {
-          this.playerTwoScore++
-        }
+      if (gameState.grid[0][i] === gameState.grid[1][i] && gameState.grid[1][i] === gameState.grid[2][i] && gameState.grid[0][i] !== null) {
+        gameState.grid[0][i] === this.playerOne ? this.playerOneScore++ : this.playerTwoScore++
 
         return gameState.grid[0][i]
       }
